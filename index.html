@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-div">
+        <img class="logo" src="./img/bank-logo.svg" />
+        <ul>
+          <li><a>BANK</a></li>
+          <li><a>BUSINESS</a></li>
+          <li><a>INVESTMENTS</a></li>
+          <li><a>INSURANCE</a></li>
+          <li><a>MOBILE</a></li>
+          <li><a>TRIPS</a></li>
+          <li><a>ENTERTAINMENT</a></li>
+        </ul>
+        <a class="enter-a">ENTER</a>
+      </div>
+      <div class="main-div">
+        <h1>Currency converter online</h1>
+        <div class="currencies-div">
+          <div class="left-currency-div">
+            <p class="currency-head-p">I have</p>
+            <ul class="currency-list first" >
+              <li id="RUB">RUB</li>
+              <li id="USD">USD</li>
+              <li id="EUR">EUR</li>
+              <li id="GBP">GBP</li>
+            </ul>
+            <div class="currency-value">
+              <input class="input-number" type="text" value="1" />
+              <p class="exchange-rate">0 RUB = 0 USD</p>
+            </div>
+          </div>
+          <div class="right-currency-div">
+            <p class="currency-head-p">I want to buy</p>
+            <ul class="currency-list second">
+              <li id="RUB">RUB</li>
+              <li id="USD">USD</li>
+              <li id="EUR">EUR</li>
+              <li id="GBP">GBP</li>
+            </ul>
+            <div class="currency-value">
+              <input class="input-number" type="text" value="0" />
+              <p class="exchange-rate">0 USD = 0 RUB</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
