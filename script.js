@@ -19,6 +19,12 @@ getExchangeRate(from, to, amount).then((data) => {
     input[1].value = data.rates[`${to}`];
 })
 
+function getExchangeRateP() {
+    exchangeRate[0].textContent = `${input[0].value} ${from} = ${input[1].value} ${to}`;
+    exchangeRate[1].textContent = `${input[1].value} ${to} = ${input[0].value} ${from}`;
+}
+
+
 
 function changeColor(from, to) {
     currencyList.forEach((item, index) => {
@@ -52,6 +58,7 @@ function getInput() {
     })
 }
 
+
 first.forEach(item => {
     item.addEventListener("click", (e) => {
         from = e.target.innerText;
@@ -60,9 +67,12 @@ first.forEach(item => {
 
         getInput(amount);
 
+
         getExchangeRate(from, to, amount).then((data) => {
             input[1].value = data.rates[`${to}`];
         })
+
+        getExchangeRateP()
 
     })
 })
@@ -79,7 +89,14 @@ second.forEach(item => {
             input[1].value = data.rates[`${to}`];
         })
 
+        getExchangeRateP()
+
     })
 })
+
+
+
+getExchangeRateP()
+
 
 changeColor(from, to);
