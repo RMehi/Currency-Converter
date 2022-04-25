@@ -21,9 +21,18 @@
 
 
 
+
     function getExchangeRateP() {
-        exchangeRate[0].textContent = `${input[0].value} ${from} = ${input[1].value} ${to}`;
-        exchangeRate[1].textContent = `${input[1].value} ${to} = ${input[0].value} ${from}`;
+        // exchangeRate[0].textContent = `${input[0].value} ${from} = ${input[1].value} ${to}`;
+        // exchangeRate[1].textContent = `${input[1].value} ${to} = ${input[0].value} ${from}`;
+       
+        getExchangeRate(from, to, 1).then(data => {
+            exchangeRate[0].textContent = `1 ${from} = ${data.rates[`${to}`]} ${to}`;
+        });
+        getExchangeRate(to, from, 1).then(data => {
+            exchangeRate[1].textContent = `1 ${to} = ${data.rates[`${from}`]} ${from}`;
+        });
+        
     }
 
 
@@ -53,7 +62,7 @@
                     input[0].value = 0;
                     getExchangeRateP();
                 } else {
-                    getExchangeRate(from, to, amount).then(data => {
+                    getExchangeRate(to, from, amount).then(data => {
                         input[0].value = data.rates[`${from}`];
                         getExchangeRateP();
                     }).catch(() => {
@@ -127,11 +136,10 @@
             getInput(amount);
 
 
-            getExchangeRate(from, to, amount).then((data) => {
-                input[1].value = data.rates[`${to}`];
-            })
+            // getExchangeRate(from, to, amount).then((data) => {
+            //     input[1].value = data.rates[`${to}`];
+            // })
 
-            getExchangeRateP()
             getExchangeRateFunc(true, amount);
 
         })
@@ -145,11 +153,10 @@
 
             getInput(amount);
 
-            getExchangeRate(from, to, amount).then((data) => {
-                input[1].value = data.rates[`${to}`];
-            })
+            // getExchangeRate(from, to, amount).then((data) => {
+            //     input[1].value = data.rates[`${to}`];
+            // })
 
-            getExchangeRateP()
             getExchangeRateFunc(true, amount);
 
         })
