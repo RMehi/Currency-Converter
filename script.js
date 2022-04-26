@@ -18,14 +18,9 @@
     getExchangeRate(from, to, amount).then((data) => {
         input[1].value = data.rates[`${to}`];
     })
-
-
-
+    
 
     function getExchangeRateP() {
-        // exchangeRate[0].textContent = `${input[0].value} ${from} = ${input[1].value} ${to}`;
-        // exchangeRate[1].textContent = `${input[1].value} ${to} = ${input[0].value} ${from}`;
-       
         getExchangeRate(from, to, 1).then(data => {
             exchangeRate[0].textContent = `1 ${from} = ${data.rates[`${to}`]} ${to}`;
         });
@@ -36,7 +31,7 @@
     }
 
 
-    function getExchangeRateFunc(forward, amount) {
+    function getExchangeRateFunc(forward, value) {
         if (from === to) {
             if (forward) {
                 input[1].value = input[0].value;
@@ -50,7 +45,7 @@
                     input[1].value = 0;
                     getExchangeRateP();
                 } else {
-                    getExchangeRate(from, to, amount).then(data => {
+                    getExchangeRate(from, to, value).then(data => {
                         input[1].value = data.rates[`${to}`];
                         getExchangeRateP();
                     }).catch((e) => {
@@ -62,8 +57,9 @@
                     input[0].value = 0;
                     getExchangeRateP();
                 } else {
-                    getExchangeRate(to, from, amount).then(data => {
-                        input[0].value = data.rates[`${from}`];
+                    getExchangeRate(to, from, value).then(data => {
+                        amount = input[0].value = data.rates[`${from}`];
+                        console.log(amount);
                         getExchangeRateP();
                     }).catch(() => {
                         alert('Internet Disconnected');
@@ -100,10 +96,6 @@
     function getInput() {
         input.forEach((item,index) => {
 
-            // item.addEventListener("keyup", (e) => {
-            //     amount = item.value;
-            //     return amount;
-            // })
 
             item.addEventListener('change', changeEnterEvent);
             item.addEventListener('keypress', (e) => {
@@ -119,6 +111,7 @@
                     getExchangeRateFunc(true, item.value);
                 } else {
                     getExchangeRateFunc(false, item.value);
+                    console.log(item.value)
                 }
             }
         })
@@ -126,6 +119,22 @@
         
     }
 
+    document.addEventListener('keypress', (e) => {
+        let regex = new RegExp("^[0-9]|[.]|[,]");
+    
+        if (!regex.test(e.key)) {
+            e.preventDefault(); 
+        }
+        else {
+            if (e.target.value.includes('.') && (e.key === ',' || e.key === '.')) {
+                e.preventDefault();
+            }
+            else if(e.key === ','){  
+                e.target.value += '.';
+                e.preventDefault();
+            }
+        }
+    });
 
     first.forEach(item => {
         item.addEventListener("click", (e) => {
@@ -133,9 +142,6 @@
 
             changeColor(from, to);
 
-            // getExchangeRate(from, to, amount).then((data) => {
-            //     input[1].value = data.rates[`${to}`];
-            // })
 
             getExchangeRateFunc(true, amount);
 
@@ -148,12 +154,7 @@
 
             changeColor(from, to);
 
-            // getExchangeRate(from, to, amount).then((data) => {
-            //     input[1].value = data.rates[`${to}`];
-            // })
-
             getExchangeRateFunc(true, amount);
-
         })
     })
 
