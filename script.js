@@ -133,9 +133,6 @@
 
             changeColor(from, to);
 
-            getInput(amount);
-
-
             // getExchangeRate(from, to, amount).then((data) => {
             //     input[1].value = data.rates[`${to}`];
             // })
@@ -151,8 +148,6 @@
 
             changeColor(from, to);
 
-            getInput(amount);
-
             // getExchangeRate(from, to, amount).then((data) => {
             //     input[1].value = data.rates[`${to}`];
             // })
@@ -165,6 +160,5 @@
 
 
     getExchangeRateFunc(true, amount)
-
-
+    getInput(amount);
     changeColor(from, to);
